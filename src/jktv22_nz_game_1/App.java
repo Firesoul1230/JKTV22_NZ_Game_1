@@ -19,39 +19,46 @@ public class App {
             System.out.println("---- Начало игры ----");
         Random random = new Random();
         boolean repeat = true;
+        int coins = 0;
         do {
-            int myNumber = random.nextInt(9-0+1)-0;
-            System.out.print("Задумано число в диапазоне от 0 до 9, угадайте какое это число (у вас есть три попытки): ");
+            int myNumber = random.nextInt(9-0+1)+0;
+            System.out.println("Задумано число в диапазоне от 0 до 9, угадайте какое это число. У вас есть три попытки.");
+            
             Scanner scanner = new Scanner(System.in);
-            int atempt = 1;
+            int attempt = 1;
+            
             do {
-                System.out.println("Попытка номер " + atempt + ": ");
+                
+                System.out.println("Попытка номер " + attempt + ": ");
                 int userNumber = scanner.nextInt();scanner.nextLine();
                 if (myNumber == userNumber) {
-                    System.out.println("Ты выйграл!");
+                    System.out.println("Ты выиграл!");
+                    coins += 1;
                     break;
                 }else{
-                    if (atempt > 2) {
+                    if (attempt > 2) {
                         System.out.println("Ты проиграл!");
                         System.out.println("Было загадано число " + myNumber);
+                        coins -= 2;
                     break;
                     }else{
                         if (myNumber > userNumber) {
-                            System.out.println("Неправильно попробуй еще раз.(загаданное число больше)");
+                            System.out.println("Неправильно, попробуй еще раз.(загаданное число больше)");
                         }else{
-                            System.out.println("Неправильно попробуй еще раз.(загаданное число меньше)");
+                            System.out.println("Неправильно, попробуй еще раз.(загаданное число меньше)");
                         }
                         }
                 }
-                atempt++;
+                attempt++;
             } while (true);
+            System.out.println("У вас " + coins + " монет.");
             System.out.println("Нажмите \"w\" для выхода или любую кнопку для продолжения");
             String w = scanner.nextLine();
             if (w.equals("w")) {
                 repeat = false;
             }
         }while (repeat);
-        System.out.println("---- Конец инры ----");
+        System.out.println("---- Конец игры ----");
     }
    
 }
